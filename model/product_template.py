@@ -11,7 +11,7 @@ class product_template_improvements(models.Model):
             product_template_obj = self.pool.get('product.template')
             product_templates = product_template_obj.search(cr, uid, [('default_code', '=', self.default_code)])
             if product_templates:
-                return {'warning': {'title': 'Internal Reference Failure', 'message': 'The internal reference already exists'},}
+                return {'warning': {'title': 'Internal Reference Failure', 'message': 'The internal reference already set on another product. As this field is supposed to be unique, please enter another one.'},}
     
     @api.onchange('ean13')
     def check_ean13(self):
@@ -21,4 +21,4 @@ class product_template_improvements(models.Model):
             product_template_obj = self.pool.get('product.template')
             product_templates = product_template_obj.search(cr, uid, [('ean13', '=', self.ean13)])
             if product_templates:
-                return {'warning': {'title': 'EAN13 Barcode Failure', 'message': 'The EAN13 barcode already exists'},}
+                return {'warning': {'title': 'EAN13 Barcode Failure', 'message': 'The EAN13 barcode is already set on another product. As this field is supposed to be unique, please enter another one.'},}
