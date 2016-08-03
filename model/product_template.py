@@ -1,5 +1,5 @@
 from openerp import models, fields, api
-from openerp.exceptions import validationError
+from openerp.exceptions import ValidationError
 
 class product_template_improvements(models.Model):
     _inherit = ['product.template']
