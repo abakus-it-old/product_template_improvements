@@ -13,12 +13,12 @@ class product_template_improvements(models.Model):
             if product_templates:
                 return {'warning': {'title': 'Internal Reference Failure', 'message': 'The internal reference already set on another product. As this field is supposed to be unique, please enter another one.'},}
     
-    @api.onchange('ean13')
-    def check_ean13(self):
-        if self.ean13 and len(self.ean13)>0:
+    @api.onchange('barcode')
+    def check_barcode(self):
+        if self.barcode and len(self.barcode)>0:
             cr = self.env.cr
             uid = self.env.user.id
             product_template_obj = self.pool.get('product.template')
-            product_templates = product_template_obj.search(cr, uid, [('ean13', '=', self.ean13)])
+            product_templates = product_template_obj.search(cr, uid, [('barcode', '=', self.barcode)])
             if product_templates:
-                return {'warning': {'title': 'EAN13 Barcode Failure', 'message': 'The EAN13 barcode is already set on another product. As this field is supposed to be unique, please enter another one.'},}
+                return {'warning': {'title': 'Barcode Failure', 'message': 'The  barcode is already set on another product. As this field is supposed to be unique, please enter another one.'},}
