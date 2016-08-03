@@ -4,7 +4,7 @@ from openerp.exceptions import ValidationError
 class product_template_improvements(models.Model):
     _inherit = ['product.template']
 
-    @api.constraint('default_code')
+    @api.constrains('default_code')
     def check_default_code(self):
         if self.default_code and len(self.default_code)>0:
             cr = self.env.cr
@@ -14,7 +14,7 @@ class product_template_improvements(models.Model):
             if product_templates:
                 raise ValidationError('The internal reference already set on another product. As this field is supposed to be unique, please enter another one.')
     
-    @api.constraint('barcode')
+    @api.constrains('barcode')
     def check_barcode(self):
         if self.barcode and len(self.barcode)>0:
             cr = self.env.cr
